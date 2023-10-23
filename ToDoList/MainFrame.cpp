@@ -18,7 +18,7 @@ void MainFrame::CreateControls()
 
 	panel = new wxPanel(this);
 	panel->SetFont(mainFont);
-
+	 
 	headlineText = new wxStaticText(panel, wxID_ANY, "To-Do List", wxPoint(0, 22), wxSize(800, -1), wxALIGN_CENTER_HORIZONTAL);
 
 	inputField = new wxTextCtrl(panel, wxID_ANY, "", wxPoint(100, 80), wxSize(495, 35));
@@ -35,6 +35,7 @@ void MainFrame::BindEventHandlers()
 void MainFrame::OnAddButtonClicked(wxCommandEvent& evt)
 {
 	AddTaskFromInput();
+	
 }
 
 void MainFrame::AddTaskFromInput()
@@ -43,5 +44,8 @@ void MainFrame::AddTaskFromInput()
 
 	if (!description.IsEmpty()) {
 		checkListBox->Insert(description, checkListBox->GetCount());
+		inputField->Clear();
 	}
+
+	inputField->SetFocus();
 }
