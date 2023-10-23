@@ -6,7 +6,7 @@
 #include <algorithm>
 
 // Function to save tasks to a file.
-void saveTaskToFile(const std::vector<Task>& tasks, const std::string& fileName)
+void SaveTaskToFile(const std::vector<Task>& tasks, const std::string& fileName)
 {
 	std::ofstream ostream(fileName);
 	ostream << tasks.size();
@@ -21,7 +21,7 @@ void saveTaskToFile(const std::vector<Task>& tasks, const std::string& fileName)
 
 }
 // Function to load tasks from a file.
-std::vector<Task> loadTaskFromFile(const std::string& fileName)
+std::vector<Task> LoadTaskFromFile(const std::string& fileName)
 {
 	if (!std::filesystem::exists(fileName)) {
 		return std::vector<Task>();
@@ -35,12 +35,12 @@ std::vector<Task> loadTaskFromFile(const std::string& fileName)
 
 	// Loop through the tasks and load them from the file.
 	for (int i = 0; i < n; i++) {
-		std::string desciption;
+		std::string description;
 		bool done;
 
-		istream >> desciption >> done;
-		std::replace(desciption.begin(), desciption.end(), ' ', '_');
-		tasks.push_back(Task{ desciption, done });
+		istream >> description >> done;
+		std::replace(description.begin(), description.end(), '_', ' ');
+		tasks.push_back(Task{ description, done });
 	}
 
 	return tasks;
