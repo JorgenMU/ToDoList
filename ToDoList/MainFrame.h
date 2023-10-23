@@ -8,11 +8,16 @@ public:
 	MainFrame(const wxString& title);  // Constructor to create the main frame.
 private:
 	void CreateControls();
+	void BindEventHandlers();
+
+	void OnAddButtonClicked(wxCommandEvent& evt);
+
+	void AddTaskFromInput();
 
 	wxPanel* panel;
 	wxStaticText* headlineText;
 	wxTextCtrl* inputField;
 	wxButton* addButton;
-	wxCheckListBox* checkListButton;
+	wxCheckListBox* checkListBox;
 	wxButton* clearButton;
 };
