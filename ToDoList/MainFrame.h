@@ -11,6 +11,7 @@ private:
 	void BindEventHandlers();
 
 	void OnAddButtonClicked(wxCommandEvent& evt);
+	void OnInputEnter(wxCommandEvent& evt);
 
 	void AddTaskFromInput();
 

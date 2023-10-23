@@ -21,7 +21,7 @@ void MainFrame::CreateControls()
 	 
 	headlineText = new wxStaticText(panel, wxID_ANY, "To-Do List", wxPoint(0, 22), wxSize(800, -1), wxALIGN_CENTER_HORIZONTAL);
 
-	inputField = new wxTextCtrl(panel, wxID_ANY, "", wxPoint(100, 80), wxSize(495, 35));
+	inputField = new wxTextCtrl(panel, wxID_ANY, "", wxPoint(100, 80), wxSize(495, 35), wxTE_PROCESS_ENTER);
 	addButton = new wxButton(panel, wxID_ANY, "Add", wxPoint(600, 80), wxSize(100, 35));
 	checkListBox = new wxCheckListBox(panel, wxID_ANY, wxPoint(100, 120), wxSize(600, 400));
 	clearButton = new wxButton(panel, wxID_ANY, "clear", wxPoint(100, 525), wxSize(100, 35));
@@ -30,12 +30,18 @@ void MainFrame::CreateControls()
 void MainFrame::BindEventHandlers()
 {
 	addButton->Bind(wxEVT_BUTTON, &MainFrame::OnAddButtonClicked, this);
+	inputField->Bind(wxEVT_TEXT_ENTER, &MainFrame::OnInputEnter, this);
 }
 
 void MainFrame::OnAddButtonClicked(wxCommandEvent& evt)
 {
 	AddTaskFromInput();
 	
+}
+
+void MainFrame::OnInputEnter(wxCommandEvent& evt)
+{
+	AddTaskFromInput();
 }
 
 void MainFrame::AddTaskFromInput()
