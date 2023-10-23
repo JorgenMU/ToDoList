@@ -13,6 +13,7 @@ private:
 	void OnAddButtonClicked(wxCommandEvent& evt);
 	void OnInputEnter(wxCommandEvent& evt);
 	void OnListKeyDown(wxKeyEvent& evt);
+	void OnclearButtonClicked(wxCommandEvent& evt);
 
 	void AddTaskFromInput();
 	void DeleteSelectedTask();

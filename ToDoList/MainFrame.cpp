@@ -32,6 +32,7 @@ void MainFrame::BindEventHandlers()
 	addButton->Bind(wxEVT_BUTTON, &MainFrame::OnAddButtonClicked, this);
 	inputField->Bind(wxEVT_TEXT_ENTER, &MainFrame::OnInputEnter, this);
 	checkListBox->Bind(wxEVT_KEY_DOWN, &MainFrame::OnListKeyDown, this);
+	clearButton->Bind(wxEVT_BUTTON, &MainFrame::OnclearButtonClicked, this);
 }
 
 void MainFrame::OnAddButtonClicked(wxCommandEvent& evt)
@@ -57,6 +58,20 @@ void MainFrame::OnListKeyDown(wxKeyEvent& evt)
 		case WXK_DOWN:
 			MoveSelectedTask(1);
 			break;
+	}
+}
+
+void MainFrame::OnclearButtonClicked(wxCommandEvent& evt)
+{
+	if (checkListBox->IsEmpty()) {
+		return;
+	}
+
+	wxMessageDialog dialog(this, "Are you sure you want to clear all tasks", "Clear", wxYES_NO | wxCANCEL);
+	int result = dialog.ShowModal();
+
+	if (result == wxID_YES) {
+		checkListBox->Clear();
 	}
 }
 
@@ -109,7 +124,4 @@ void MainFrame::SwapTasks(int i, int j)
 
 	checkListBox->SetString(j, taskI.description);
 	checkListBox->Check(j, taskI.done);
-
-
-
 }
